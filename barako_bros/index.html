@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="favicon.png" href="favicon.png">
+  <title>Barako Bro's | Coffee Craft</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+
+      background: #f9f5f0;
+      color: #2e1e0f;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #2c1a0b;
+      color: #f2e3d5;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #e7d7c1;
+    }
+
+    .logo i {
+      color: #c89b6e;
+      font-size: 2.2rem;
+    }
+
+    nav a {
+      color: #f2e3d5;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    nav a:hover {
+      color: #c89b6e;
+      border-bottom-color: #c89b6e;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(44, 26, 11, 0.7), rgba(44, 26, 11, 0.7)), url('top bg.jpeg');
+      background-size: cover;
+      background-position: center;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      color: #fff8f0;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
+
+    .btn {
+      background: #c89b6e;
+      color: #1f1308;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .btn:hover {
+      background: #e0b68a;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 18px rgba(0,0,0,0.25);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #2c1a0b;
+      margin: 2.5rem 0 1.5rem;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: "☕";
+      display: block;
+      font-size: 1.8rem;
+      margin-top: 0.3rem;
+      opacity: 0.7;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+    }
+
+    .price-card {
+      background: #fffefc;
+      border-radius: 24px;
+      box-shadow: 0 12px 24px -8px rgba(44, 26, 11, 0.15);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #f0e1d2;
+    }
+
+    .price-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 36px -12px rgba(44, 26, 11, 0.3);
+      border-color: #c89b6e;
+    }
+
+    .price-card i {
+      font-size: 3rem;
+      color: #aa7a4f;
+      margin-bottom: 1rem;
+    }
+
+    .price-card h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2c1a0b;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-card .description {
+      font-size: 0.95rem;
+      color: #6b4f38;
+      margin-bottom: 1.2rem;
+      min-height: 2.5rem;
+    }
+
+    .price {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #2c1a0b;
+      margin: 0.5rem 0;
+    }
+
+    .price small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #7a5e46;
+    }
+
+    .badge {
+      background: #f0e1d2;
+      color: #2c1a0b;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      margin-top: 0.8rem;
+    }
+
+    .add-to-cart-btn {
+      display: block;
+      width: 100%;
+      margin-top: 1.2rem;
+      background: #2c1a0b;
+      color: #f2e3d5;
+      border: none;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .add-to-cart-btn:hover {
+      background: #c89b6e;
+      color: #1f1308;
+      transform: translateY(-2px);
+    }
+
+    .about-section {
+      background: #e7d7c1;
+      padding: 3rem 2rem;
+      margin: 2rem 0;
+    }
+
+    .about-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .about-text {
+      flex: 1 1 300px;
+    }
+
+    .about-text h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #2c1a0b;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      color: #3d2b1c;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-image {
+      flex: 1 1 280px;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 25px 30px -12px rgba(0,0,0,0.3);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    footer {
+      background: #1f1308;
+      color: #d9c7b1;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: 2rem;
+    }
+
+    footer .footer-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    footer i {
+      color: #c89b6e;
+      margin-right: 0.4rem;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.75;
+      border-top: 1px solid #c89b6e;
+      padding-top: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .floating-cart {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #2c1a0b;
+      color: #f2e3d5;
+      border-radius: 16px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+      z-index: 100;
+      min-width: 220px;
+    }
+
+    .cart.icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.4rem;
+      position: relative;
+    }
+
+    .cart-badge {
+      background: #c89b6e;
+      color: #1f1308;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-details {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .checkout-btn-floating {
+      background: #c89b6e;
+      color: #1f1308;
+      border: none;
+      padding: 0.6rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .checkout-btn-floating:hover {
+      background: #e0b68a;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fffefc;
+      color: #2c1a0b;
+      border-radius: 20px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+    }
+
+    .modal-content h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #2c1a0b;
+    }
+
+    .order-list {
+      border-top: 1px solid #f0e1d2;
+      border-bottom: 1px solid #f0e1d2;
+      padding: 0.8rem 0;
+      margin-bottom: 1rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.35rem 0;
+      font-size: 0.95rem;
+    }
+
+    .modal-total {
+      text-align: right;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .checkout-form h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.9rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #d9c7b1;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: #fdfaf6;
+      color: #2e1e0f;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #c89b6e;
+    }
+
+    .modal-btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .btn-cancel,
+    .btn-confirm {
+      flex: 1;
+      padding: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-cancel {
+      background: #e7d7c1;
+      color: #2c1a0b;
+    }
+
+    .btn-cancel:hover {
+      background: #d9c7b1;
+    }
+
+    .btn-confirm {
+      background: #2c1a0b;
+      color: #f2e3d5;
+    }
+
+    .btn-confirm:hover {
+      background: #c89b6e;
+      color: #1f1308;
+    }
+
+    .btn-confirm:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+      }
+      nav a {
+        margin: 0 0.8rem;
+        font-size: 0.95rem;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .price-card .price {
+        font-size: 2rem;
+      }
+      .floating-cart {
+        right: 0.8rem;
+        left: 0.8rem;
+        bottom: 0.8rem;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+  <header>
+    <div class="logo">
+      <span style="font-size: 2rem;">🍵</span>
+      <span>Barako Bro's</span>
+    </div>
+    <nav>
+      <a href="#Menu">Menu</a>
+      <a href="#About">Our Story</a>
+      <a href="#Contact Us">Contact us</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Fuel Your Day</h1>
+      <p>Ethically sourced beans, roasted in small batches. Every cup tells a story.</p>
+      <a href="#menu" class="btn">Explore Our Menu</a>
+    </div>
+  </section>
+
+  <h2 class="section-title" id="menu">Craft Coffee & Prices</h2>
+  <div class="menu-grid">
+    <div class="price-card">
+      <i class="fas fa-coffee"></i>
+      <h3>Espresso</h3>
+      <p class="description">Rich, intense, and perfectly extracted single or double shot.</p>
+      <div class="price">₱120 <small>/ shot</small></div>
+      <div class="badge">Double +₱40</div>
+      <button class="add-to-cart-btn" data-name="Espresso" data-price="120">Add to Cart</button>
+    </div>
+
+    <div class="price-card">
+      <i class="fas fa-mug-saucer"></i>
+      <h3>Ice Americano</h3>
+      <p class="description">Espresso diluted with hot water — smooth and bold.</p>
+      <div class="price">₱150 <small>/ 12oz</small></div>
+      <div class="badge">Large ₱180</div>
+      <button class="add-to-cart-btn" data-name="Ice Americano" data-price="180">Add to Cart</button>
+    </div>
+
+    <div class="price-card">
+      <i class="fas fa-mug-hot"></i>
+      <h3>Cappuccino</h3>
+      <p class="description">Equal parts espresso, steamed milk, and velvety foam.</p>
+      <div class="price">₱180 <small>/ 12oz</small></div>
+      <div class="badge">Oat milk +₱30</div>
+      <button class="add-to-cart-btn" data-name="Cappuccino" data-price="180">Add to Cart</button>
+    </div>
+
+    <div class="price-card">
+      <i class="fas fa-mug-hot"></i>
+      <h3>Latte</h3>
+      <p class="description">Silky microfoam with a shot of espresso — comfort in a cup.</p>
+      <div class="price">₱190 <small>/ 12oz</small></div>
+      <div class="badge">Flavor syrup +₱30</div>
+      <button class="add-to-cart-btn" data-name="Latte" data-price="190">Add to Cart</button>
+    </div>
+
+    <div class="price-card">
+      <i class="fas fa-wine-glass"></i>
+      <h3>Cold Brew</h3>
+      <p class="description">Steeped for 20 hours — ultra-smooth, low acidity, Perfect for Coffee Lover.</p>
+      <div class="price">₱200 <small>/ 16oz</small></div>
+      <div class="badge">Sweet cream +₱40</div>
+      <button class="add-to-cart-btn" data-name="Cold Brew" data-price="200">Add to Cart</button>
+    </div>
+
+    <div class="price-card">
+      <i class="fas fa-mug-saucer"></i>
+      <h3>Mocha</h3>
+      <p class="description">Espresso, steamed milk, and dark chocolate ganache.</p>
+      <div class="price">₱220 <small>/ 12oz</small></div>
+      <div class="badge">Whipped cream +₱20</div>
+      <button class="add-to-cart-btn" data-name="Mocha" data-price="220">Add to Cart</button>
+    </div>
+
+    <div class="price-card">
+      <i class="fas fa-leaf"></i>
+      <h3>Matcha</h3>
+      <p class="description">Finely ground, vibrant green powder made from shade-grown tea leaves.</p>
+      <div class="price">₱110 <small>/ each</small></div>
+      <div class="badge">Warmed on request</div>
+      <button class="add-to-cart-btn" data-name="Matcha" data-price="110">Add to Cart</button>
+    </div>
+
+    <div class="price-card">
+      <i class="fas fa-seedling"></i>
+      <h3>Barako Blend Beans</h3>
+      <p class="description">Our signature medium-dark roast — whole bean or ground and Best Seller.</p>
+      <div class="price">₱250 <small>/ 12oz bag</small></div>
+      <div class="badge">Subscribe & save 10%</div>
+      <button class="add-to-cart-btn" data-name="Barako Blend Beans" data-price="250">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="floating-cart">
+    <div class="cart icon">
+      🛒
+      <span id="cart-count" class="cart-badge">0</span>
+    </div>
+    <div class="cart-details">
+      <span>Total: 💵<span id="cart-total">0</span></span>
+    </div>
+    <button class="checkout-btn-floating" onclick="opencheckout()">Checkout Order</button>
+  </div>
+
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content">
+      <h2>Checkout</h2>
+      <div id="order-list" class="order-list"></div>
+      <div class="modal-total">
+        total: <span id="modal-total-price">0</span>
+      </div>
+      <div class="checkout-form">
+        <h3>Delivery Details</h3>
+        <div class="form-group">
+          <label for="cust-name">Full Name</label>
+          <input type="text" id="cust-name" placeholder="e.g. Allen Kalbo">
+        </div>
+
+        <div class="form-group">
+          <label for="cust-number">Phone Number:</label>
+          <input type="tel" id="cust-number" placeholder="e.g.0123456789">
+        </div>
+
+        <div class="form-group">
+          <label for="cust-address">Complete Address</label>
+          <textarea id="cust-address" rows="3" placeholder="House No., Street, Barangay, City"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-btn-group">
+        <button class="btn-cancel" onclick="closeCheckout()">cancel</button>
+        <button class="btn-confirm" onclick="confirmOrder()">Place Order</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="about-section" id="about">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Coffee with a conscience</h2>
+        <p>At Barako Bro's, we believe great coffee starts with great relationships. We source directly from smallholder farms in Benguet, Batangas, and Mindanao — paying above fair-trade prices.</p>
+        <p>Every batch is roasted right in our shop, ensuring peak freshness. Our baristas are craftspeople who love to talk about tasting notes, brew methods, and the perfect crema.</p>
+        <p><strong>Visit us:</strong> University of Eastern Pangasinan McArthur Highway,<br>
+         Barangay Canarvacan, Binalonan, Pangasinan, 2436 · Open daily 7am – 6pm</p>
+      </div>
+      <div class="about-image">
+        <img src="beans bg.jpeg" alt="Coffee beans and brewing">
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-info">
+      <span><i class="fas fa-map-pin"></i> University of Eastern Pangasinan McArthur Highway,<br>
+         Barangay Canarvacan, Binalonan, Pangasinan, 2436</span>
+      <span><i class="fas fa-phone-alt"></i>+63 931 928 5056</span>
+      <span><i class="fas fa-envelope"></i>Barakobros0@gmail.com</span>
+      <span><i class="fas fa-clock"></i> Mon–Sun: 7am – 6pm</span>
+    </div>
+    <div class="copyright">
+      &copy; 2026 Barako Bro's. All rights reserved. Crafted with 🫰 and caffeine.
+    </div>
+  </footer>
+
+  <script>
+    const EMAILJS_CONFIG = {
+  publicKey: "80OcpfivVPHcutz35",   
+  serviceId: "service_q0typbv",
+  templateId: "template_946srsf"
+};
+
+if (typeof emailjs !== 'undefined') {
+  emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+}
+
+const isConfigured = () => {
+  EMAILJS_CONFIG.publicKey  !== "",
+  EMAILJS_CONFIG.serviceId  !== "",
+  EMAILJS_CONFIG.templateId  !== "";
+};
+  
+
+let cart = [];
+const cartCountEl  = document.getElementById('cart-count');
+const cartTotalEl  = document.getElementById('cart-total');
+const modalEl      = document.getElementById('checkoutModal');
+const orderListEl  = document.getElementById('order-list');
+const modalTotalEl = document.getElementById('modal-total-price');
+
+document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name  = btn.dataset.name;
+    const price = Number(btn.dataset.price);
+    const existing = cart.find(i => i.name === name && i.price === price);
+    if (existing) existing.qty += 1;
+    else cart.push({ name, price, qty: 1 });
+    updateCartDisplay();
+  });
+});
+
+function updateCartDisplay() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  const total = cart.reduce((s, i) => s + i.qty * i.price, 0);
+  cartCountEl.textContent = count;
+  cartTotalEl.textContent = total;
+}
+
+function opencheckout() {
+  if (cart.length === 0) {
+    alert('Your cart is empty. Add some coffee first! ☕');
+    return;
+  }
+  orderListEl.innerHTML = '';
+  let total = 0;
+  cart.forEach(item => {
+    const line = item.qty * item.price;
+    total += line;
+    const div = document.createElement('div');
+    div.className = 'order-item';
+    div.innerHTML = `<span>${item.name} × ${item.qty}</span><span>₱${line}</span>`;
+    orderListEl.appendChild(div);
+  });
+  modalTotalEl.textContent = '₱' + total;
+  modalEl.classList.add('active');
+}
+
+function closeCheckout() {
+  modalEl.classList.remove('active');
+}
+
+async function confirmOrder() {
+  const name    = document.getElementById('cust-name').value.trim();
+  const phone   = document.getElementById('cust-number').value.trim();
+  const address = document.getElementById('cust-address').value.trim();
+
+  if (!name || !phone || !address) {
+    alert('Please fill in your name, phone number, and address.');
+    return;
+  }
+
+  let orderText = '';
+  let total = 0;
+  cart.forEach(item => {
+    const line = item.qty * item.price;
+    total += line;
+    orderText += `${item.name} × ${item.qty} = ₱${line}\n`;
+  });
+
+  const btn = document.querySelector('.btn-confirm');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  let sent = false;
+
+  if (isConfigured()) {
+    try {
+      await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        {
+          customer_name:    name,
+          customer_phone:   phone,
+          customer_address: address,
+          order_list:       orderText,
+          order_total:      total,
+          order_date:       new Date().toLocaleString('en-PH')
+        }
+      );
+      sent = true;
+    } catch (err) {
+      console.error('EmailJS error:', err);
+    }
+  }
+
+  if (sent) {
+    alert(`✅ Order confirmed, ${name}!\n\nIpinadala na sa amin ang order mo. We'll text you at ${phone} shortly.\n\nTotal: ₱${total}`);
+  } else {
+    alert(
+      `Thank you for Ordering\n\n` +
+      `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\n\n` +
+      `Order:\n${orderText}\nTotal: ₱${total}`
+    );
+  }
+
+  cart = [];
+  updateCartDisplay();
+  document.getElementById('cust-name').value    = '';
+  document.getElementById('cust-number').value  = '';
+  document.getElementById('cust-address').value = '';
+  btn.disabled = false;
+  btn.textContent = 'Place Order';
+  closeCheckout();
+}
+
+modalEl.addEventListener('click', e => {
+  if (e.target === modalEl) closeCheckout();
+});
+  </script>
+
+</body>
+</html>
